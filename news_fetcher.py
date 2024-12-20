@@ -21,7 +21,6 @@ with urllib.request.urlopen(url) as response:
     data = json.loads(response.read().decode("utf-8"))
     articles = data["articles"]
 
-# Create a new list to store the formatted data
 formatted_articles = []
 
 for article in articles:
@@ -34,7 +33,6 @@ for article in articles:
     }
     formatted_articles.append(formatted_article)
 
-# Save the formatted articles to a JSON file
 with open("news_articles.json", "w", encoding="utf-8") as outfile:
     json.dump(formatted_articles, outfile, indent=4)
 
