@@ -1,0 +1,13 @@
+{
+    "news_api_key": "YOUR GNEWS API KEY",
+    "telegram_bot_token": "YOUR BOT TOKEN",
+    "admin_chat_id": YOUR ADMIN CHAT KEY,
+    "news_fetcher_script": "news_fetcher.py",
+    "x_consumer_key": "YOUR X CONSUMER KEY",
+    "x_consumer_secret": "YOUR X CONSUMER SECRET",
+    "x_access_token": "YOUR X ACCESS TOKEN",
+    "x_access_token_secret": "YOUR X ACCESS TOKEN SECRET",
+    "x_client_id": "YOUR X CLIENT ID",
+    "x_client_secret": "YOUR X CLIENT SECRET"
+  }
+  
