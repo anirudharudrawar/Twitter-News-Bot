@@ -1,0 +1,7 @@
+requests
+tweepy
+telegram
+python-telegram-bot
+asyncio
+json
+logging
