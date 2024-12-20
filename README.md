@@ -1,2 +1,3 @@
 # Twitter-News-Bot
-This is a Twitter news bot in Python. It uses GNews API to get news, Telegram API for admin approval and then x API (Twitter API) for posting it on x.com .
+This is a Python news bot for Twitter. It uses the GNews API to get news, the Telegram API for admin approval, and the x API (Twitter API) to post it on x.com.
+This was made for personal use i am planning to add more features to it in near future.
