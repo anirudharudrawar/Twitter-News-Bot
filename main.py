@@ -9,13 +9,11 @@ from telegram import Update, Bot, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 from tweepy import OAuthHandler, API
 
-# Configure logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
 logger = logging.getLogger(__name__)
 
-# Load configuration from config.json
 try:
     with open("config.json", "r") as f:
         config = json.load(f)
@@ -71,25 +69,20 @@ def post_to_x(filename):
     """
 
     try:
-        # Load credentials from config.json (replace with your actual keys)
         with open("config.json", "r") as f:
             config = json.load(f)
             consumer_key = config["x_consumer_key"]
             consumer_secret = config["x_consumer_secret"]
 
-        # Check if the JSON file exists
         if not os.path.exists(filename):
             logger.error(f"Error: JSON file {filename} not found.")
             return False
 
-        # Load article data from JSON
         with open(filename, "r") as f:
             article = json.load(f)
 
-        # Construct tweet message (title as bold hyperlink)
         tweet_message = f"{article['title']} \n Read More:{article['url']}"[:280]
 
-        # Create OAuth1Session and post to Twitter
         oauth = OAuth1Session(
             consumer_key,
             client_secret=consumer_secret,
@@ -125,7 +118,7 @@ async def send_news_for_approval(context: ContextTypes.DEFAULT_TYPE, articles, c
         return
 
     article = articles[current_index]
-    message = f"{article['title']}\n\n{article['description']}\n\n[Read More]({article['url']})"  # No bold in Telegram
+    message = f"{article['title']}\n\n{article['description']}\n\n[Read More]({article['url']})"  
 
     keyboard = [
         [
@@ -138,7 +131,7 @@ async def send_news_for_approval(context: ContextTypes.DEFAULT_TYPE, articles, c
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     try:
-        await context.bot.send_message(chat_id=ADMIN_CHAT_ID, text=message, reply_markup=reply_markup) # Removed ParseMode
+        await context.bot.send_message(chat_id=ADMIN_CHAT_ID, text=message, reply_markup=reply_markup) 
     except telegram.error.BadRequest as e:
         logger.error(f"Error sending message (Bad Request): {e}. Message: {message}")
         await context.bot.send_message(chat_id=ADMIN_CHAT_ID, text=f"Error sending message: {e}")
@@ -156,7 +149,7 @@ async def handle_approval(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     data = query.data
     if data == "approve_all":
-        await query.edit_message_text(text="All articles approved!") # Removed ParseMode
+        await query.edit_message_text(text="All articles approved!")
         for article in articles:
             if post_to_x(article):
                 print(f"Approved and posted: {article['title']}")
@@ -164,7 +157,7 @@ async def handle_approval(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 print(f"Approved but failed to post: {article['title']}")
         return
     elif data == "reject_all":
-        await query.edit_message_text(text="All articles rejected.") # Removed ParseMode
+        await query.edit_message_text(text="All articles rejected.") 
         return
 
     action, article_index = data.split("_")
@@ -173,13 +166,12 @@ async def handle_approval(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if action == "approve":
         article = articles[article_index]
         try:
-            filename = f"approved_article_{article_index}.json"  # Create unique filename
+            filename = f"approved_article_{article_index}.json"  
             with open(filename, "w") as f:
-                json.dump(article, f, indent=4)  # Save the entire article dictionary
+                json.dump(article, f, indent=4) 
             print(f"Article saved to {filename}")
 
-            # Call the post_to_x function
-            if post_to_x(filename):  # Pass the filename
+            if post_to_x(filename):  
                 await query.edit_message_text(text=f"Article {article_index + 1} approved and posted to X!")
             else:
                 await query.edit_message_text(text=f"Article {article_index + 1} approved, but failed to post to X.")
@@ -190,14 +182,13 @@ async def handle_approval(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif action == "reject":
         article = articles[article_index]
-        await query.edit_message_text(text=f"Article {article_index + 1} rejected!") # Removed ParseMode
+        await query.edit_message_text(text=f"Article {article_index + 1} rejected!") 
         print(f"Rejected: {article['title']}")
 
     else:
-        await query.edit_message_text(text="Invalid action.") # Removed ParseMode
+        await query.edit_message_text(text="Invalid action.") 
         return
 
-    # Send the next article for approval
     await send_news_for_approval(context, articles, article_index + 1)
 
 async def fetch_new_news(update: Update, context: ContextTypes.DEFAULT_TYPE):
