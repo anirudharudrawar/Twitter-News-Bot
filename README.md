@@ -1,11 +1,116 @@
-# Twitter-News-Bot
-This is a Python news bot for Twitter. It uses the GNews API to get news, the Telegram API for admin approval, and the x API (Twitter API) to post it on x.com.
-This was made for personal use i am planning to add more features to it in near future.
+# 🚀 Telegram News Approval Bot
 
-# How to Use
-1) Just edit the config.json file
-2) Run "pip install -r requirements.txt" to install requirements
-3) Run "python3 main.py"
-4) Go to your telegram bot and start approving or rejecting the posts
+A Telegram bot that fetches news articles, allows an admin to approve or reject them, and posts approved articles to X (formerly Twitter). 📰
 
-Happy Tweeting...
+## ✨ Features
+- 📡 Fetches news articles from GNews API.
+- 🤖 Sends articles to a Telegram admin for review.
+- ✅ Approve or ❌ reject individual articles via inline buttons.
+- 🆗 "Approve All" and 🚫 "Reject All" options.
+- 🐦 Posts approved articles to X.
+
+## 📌 Prerequisites
+- 🐍 Python 3.x
+- 🤖 A Telegram bot token
+- 🔑 X (Twitter) API credentials
+- 🗂️ A `config.json` file with required keys
+
+## 🛠️ Installation
+
+### 🖥️ Windows
+1. Clone this repository:
+    ```sh
+    git clone https://github.com/your-repo/news-telegram-bot.git
+    cd news-telegram-bot
+    ```
+2. Create a virtual environment:
+    ```sh
+    python -m venv venv
+    venv\Scripts\activate
+    ```
+3. Install dependencies:
+    ```sh
+    pip install -r requirements.txt
+    ```
+4. Create a `config.json` file:
+    ```json
+    {
+      "news_api_key": "YOUR_GNEWS_API_KEY",
+      "telegram_bot_token": "YOUR_BOT_TOKEN",
+      "admin_chat_id": YOUR_ADMIN_CHAT_ID,
+      "news_fetcher_script": "news_fetcher.py",
+      "x_consumer_key": "YOUR_X_CONSUMER_KEY",
+      "x_consumer_secret": "YOUR_X_CONSUMER_SECRET",
+      "x_access_token": "YOUR_X_ACCESS_TOKEN",
+      "x_access_token_secret": "YOUR_X_ACCESS_TOKEN_SECRET",
+      "x_client_id": "YOUR_X_CLIENT_ID",
+      "x_client_secret": "YOUR_X_CLIENT_SECRET"
+    }
+    ```
+
+### 🐧 Linux / 🍏 macOS
+1. Clone this repository:
+    ```sh
+    git clone https://github.com/your-repo/news-telegram-bot.git
+    cd news-telegram-bot
+    ```
+2. Create a virtual environment:
+    ```sh
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+3. Install dependencies:
+    ```sh
+    pip install -r requirements.txt
+    ```
+4. Create a `config.json` file (same as above).
+
+## 🚀 Usage
+
+### 🔧 Start the Bot
+Run the bot with:
+```sh
+python bot.py
+```
+
+### 📝 Telegram Commands
+- `/fetch` - Fetches and sends news articles for approval.
+
+### 🎛️ Inline Button Actions
+- ✅ **Approve** - Approves and posts an article to X.
+- ❌ **Reject** - Rejects an article.
+- 🆗 **Approve All** - Approves and posts all articles.
+- 🚫 **Reject All** - Rejects all articles.
+
+## 🌍 Deployment
+
+To deploy this bot on a server, follow these steps:
+
+1. **Set up a cloud server (e.g., AWS, DigitalOcean, or a VPS).**
+2. **Install required packages:**
+    ```sh
+    sudo apt update && sudo apt install python3 python3-venv
+    ```
+3. **Clone the repository and navigate to the folder:**
+    ```sh
+    git clone https://github.com/your-repo/news-telegram-bot.git
+    cd news-telegram-bot
+    ```
+4. **Create a virtual environment and install dependencies:**
+    ```sh
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    ```
+5. **Run the bot in the background:**
+    ```sh
+    nohup python bot.py &
+    ```
+6. **(Optional) Use a process manager like `systemd` or `screen` for reliability.**
+
+## 📜 License
+This project is open-source under the MIT License.
+
+## 👨‍💻 Author
+Pragnesh Singh
+
