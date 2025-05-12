@@ -113,7 +113,7 @@ This project is open-source under the MIT License.
 
 ## 👨‍💻 Author
 
-### Pragnesh Singh  
+### Anirudh rudrawar
 [![GitHub](https://img.shields.io/badge/GitHub-000?logo=github&logoColor=white)](https://github.com/pragnesh-singh-rajput)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://linkedin.com/in/pragnesh-singh-rajput) 
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?logo=instagram&logoColor=white)](https://instagram.com/pragnesh_singh_rajput)
